@@ -13,21 +13,21 @@ import EnrollmentCanceledMail from '../jobs/EnrollmentCanceledMail';
 class EnrollmentController {
   async index(req, res) {
     // const { student, plan } = req.query;
-    const active = req.query.active === 'true';
+    // const active = req.query.active === 'true';
     const whereDate = {};
-
+    /*
     if (active) {
       const currentDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ssxxx");
       whereDate.where = {
         start_date: { [Op.lte]: currentDate },
         end_date: { [Op.gte]: currentDate },
       };
-    }
+    } */
 
     const enrollments = await Enrollment.findAll({
       ...whereDate,
       order: ['start_date'],
-      attributes: ['student_id', 'plan_id', 'start_date', 'end_date', 'price'],
+      attributes: ['id', 'student_id', 'plan_id', 'start_date', 'end_date', 'price', 'active'],
       include: [
         {
           model: Student,
