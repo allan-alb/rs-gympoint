@@ -23,6 +23,7 @@ routes.use(authMiddleware); // requisições com autenticação necessária
 routes.get('/students/:student_id/help-orders', HelpOrderController.index);
 routes.post('/help-orders/:id/answer', HelpOrderController.answer);
 
+routes.get('/students', StudentController.index);
 routes.post('/students', StudentController.store);
 routes.put('/students/:id', StudentController.update);
 
