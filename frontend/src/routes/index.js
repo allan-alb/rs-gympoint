@@ -14,6 +14,8 @@ function Routes() {
         <Route path="/" exact component={SignIn} />
         <Route path="/dashboard" component={Dashboard} isPrivate />
         <Route path="/register" component={SignUp} />
+        
+        <Route path="/" component={() => (<h1>404</h1>)} />
       </Switch>
     </BrowserRouter>
   );
