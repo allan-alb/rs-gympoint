@@ -7,14 +7,14 @@ import halterLeft from '../../assets/halterleft.png';
 import halterRight from '../../assets/halterright.png';
 
 
-function Header(){
-  return(
+function Header() {
+  return (
     <Container>
       <Content>
         <div>
           <Logo>
-            <img src={halterLeft} alt="GymPoint"/>
-            <img src={halterRight} alt="GymPoint"/>
+            <img src={halterLeft} alt="GymPoint" />
+            <img src={halterRight} alt="GymPoint" />
             <h3>GYMPOINT</h3>
           </Logo>
           <nav>
