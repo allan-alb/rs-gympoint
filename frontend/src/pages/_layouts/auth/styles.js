@@ -22,33 +22,32 @@ export const Content = styled.div`
     height: 100px;
   }
 
+  label {
+    font-weight: bold;
+    line-height: 16px;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+
   form {
     margin: 40px 20px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
 
-    label {
-      flex: 1;
-      font-weight: bold;
-      
-      span {
-        margin: 5px 2px;
-        line-height: 16px;
-        font-size: 14px;
-        display: flex;
-        justify-content: flex-start;
-      }
+    input {
+      width: 100%;
+      height: 45px;
+    }
 
-      input {
-        margin-bottom: 5px;
-        flex: 1;
-        width: 100%;
-        height: 45px;
-      }
+    span {
+      color: darkred;
     }
 
     button {
-      margin: 10px 0;
+      margin: 20px 0 10px;
       padding: 15px;
       border-radius: 4px;
       border: none;
