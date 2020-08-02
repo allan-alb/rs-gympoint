@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Input, Label } from '@rocketseat/unform';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { signInRequest } from '../../store/modules/auth/actions';
 import logo from '../../assets/logo.png';
 
 const schema = Yup.object().shape({
@@ -10,18 +12,22 @@ const schema = Yup.object().shape({
 });
 
 function SignIn() {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
 
   function handleSubmit(data) {
-    console.log(data);
+    const { email, password } = data;
+
+    dispatch(signInRequest(email, password));
   }
 
   return (
     <>
-      <img src={logo} alt="GymPoint"/>
+      <img src={logo} alt="GymPoint" />
       <Form onSubmit={handleSubmit} schema={schema}>
         <Input type="email" name="email" label="Seu E-mail" placeholder="exemplo@email.com" />
         <Input type="password" name="password" label="Sua Senha" placeholder="********" />
-        <button type="submit">Entrar no sistema</button>
+        <button type="submit">{loading ? 'Carregando...' : 'Entrar no sistema'}</button>
       </Form>
     </>
   );

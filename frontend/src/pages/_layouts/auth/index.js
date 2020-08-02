@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { Wrapper, Content } from './styles';
 
 export default function AuthLayout({ children }) {
-  return(
+  return (
     <Wrapper>
       <Content>{children}</Content>
     </Wrapper>
   );
 }
 
-AuthLayout.propTypes= {
+AuthLayout.propTypes = {
   children: PropTypes.element.isRequired,
 };

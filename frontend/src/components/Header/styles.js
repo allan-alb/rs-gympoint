@@ -17,7 +17,7 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+
     nav {
       font-size: 15px;
       margin-left: 20px;
@@ -28,16 +28,15 @@ export const Content = styled.div`
         font: 14px 'Roboto', sans-serif;
         font-weight: bold;
         display: inline;
-        
+
         & + li {
           margin-left: 15px;
         }
 
         a {
-          color: ${(props) => (props.activeClassName ? '#444' : '#999' )}
+          color: ${(props) => (props.activeClassName ? '#444' : '#999')};
         }
       }
-      
     }
   }
 `;

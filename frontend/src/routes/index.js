@@ -21,7 +21,7 @@ function Routes() {
         <Route path="/plans" component={Plans} isPrivate />
         <Route path="/enrollments" component={Enrollments} isPrivate />
         <Route path="/help_orders" component={HelpOrders} isPrivate />
-        
+
         <Route path="/" component={() => (<h1>404</h1>)} />
       </Switch>
     </BrowserRouter>

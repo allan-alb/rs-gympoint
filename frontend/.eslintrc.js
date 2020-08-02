@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'react-app', 'airbnb', 'prettier', 'prettier/react'],
+  extends: ['react-app', 'eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended', 'airbnb', 'prettier', 'prettier/react'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier', 'react-hooks'],
+  plugins: ['react', 'prettier', 'react-hooks', 'jsx-a11y'],
   rules: {
     'prettier/prettier': 'warn',
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
@@ -24,5 +24,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'no-param-reassign': 'off',
+    'no-console': 'off'
   },
 };
