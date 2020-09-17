@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { Op  } from 'sequelize';
+import { Op } from 'sequelize';
 
 import Student from '../models/Student';
 
@@ -10,7 +10,7 @@ class StudentController {
 
     if (q) {
       whereName.where = {
-        name: { [Op.like]: '%'+q+'%' }
+        name: { [Op.like]: '%' + q + '%' }
       }
     }
 
@@ -19,6 +19,17 @@ class StudentController {
     });
 
     return res.json({ students });
+  }
+
+  async show(req, res) {
+    const { id } = req.params;
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'Student id not found.' });
+    }
+
+    return res.json(student);
   }
 
   async store(req, res) {
@@ -85,6 +96,18 @@ class StudentController {
       weight,
       height,
     });
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'Student id not found.' });
+    }
+
+    await student.destroy();
+    return res.status(204).send();
   }
 }
 
