@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import api from '../../../services/api';
 
 import { Container, SectionHeader, Content, Controls } from '../../_layouts/default/styles';
 
 function Plans() {
+  const [plans, setPlans] = useState([]);
+
+  async function loadPlans() {
+    const response = await api.get('plans');
+    setPlans(response.data);
+  }
+
+  async function handleDelete(id) {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Tem certeza de que deseja remover?")) {
+      const response = await api.delete(`plans/${id}`);
+
+      if (response.status === 200 || response.status === 204) {
+        toast.success("Removido com sucesso");
+      } else {
+        toast.error("Ocorreu um erro");
+      }
+      loadPlans();
+    }
+  }
+
+  useEffect(() => {
+    loadPlans();
+  }, [])
+
   return (
     <Container>
       <SectionHeader>
@@ -23,17 +50,20 @@ function Plans() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Plano 1</td>
-              <td>1 mês</td>
-              <td>R$ 35,00</td>
-              <td>
-                <Controls>
-                  <Link to={() => { }}>editar</Link>
-                  <Link to={() => { }}>apagar</Link>
-                </Controls>
-              </td>
-            </tr>
+            {plans.map((plan) => (
+              <tr key={plan.id}>
+                <td>{plan.title}</td>
+                <td>{plan.duration + (plan.duration > 1 ? ' meses' : ' mês')}</td>
+
+                <td>R$ {((plan.price / 100).toFixed(2)).toString().replace('.', ',')}</td>
+                <td>
+                  <Controls>
+                    <Link to={`/plans/${plan.id}/edit`}>editar</Link>
+                    <button type="button" className="delete" onClick={() => handleDelete(plan.id)}>apagar</button>
+                  </Controls>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Content>

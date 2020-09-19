@@ -18,7 +18,7 @@ class StudentController {
       ...whereName,
     });
 
-    return res.json({ students });
+    return res.json(students);
   }
 
   async show(req, res) {

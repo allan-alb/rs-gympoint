@@ -25,7 +25,8 @@ function Routes() {
         <Route path="/students/:id/edit" exact component={StudentsForm} isPrivate />
 
         <Route path="/plans" exact component={PlansList} isPrivate />
-        <Route path="/plans/new" component={PlansForm} isPrivate />
+        <Route path="/plans/new" exact component={PlansForm} isPrivate />
+        <Route path="/plans/:id/edit" exact component={PlansForm} isPrivate />
 
         <Route path="/enrollments" exact component={EnrollmentsList} isPrivate />
         <Route path="/enrollments/new" component={EnrollmentsForm} isPrivate />

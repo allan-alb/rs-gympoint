@@ -13,8 +13,8 @@ function Students() {
 
   async function loadStudents() {
     const response = await api.get('students');
-    setStudents(response.data.students);
-    setStudentsList(response.data.students);
+    setStudents(response.data);
+    setStudentsList(response.data);
   }
 
   function handleSearch() {
