@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+import { toast } from 'react-toastify';
+
+import api from '../../../services/api';
 
 import { Container, SectionHeader, Content, Controls } from '../../_layouts/default/styles';
 
 function Enrollments() {
+  const [enrollments, setEnrollments] = useState([]);
+
+  async function loadEnrollments() {
+    const response = await api.get('enrollments');
+    setEnrollments(response.data);
+  }
+
+  useEffect(() => {
+    loadEnrollments();
+  }, []);
+
+  function formatDate(date) {
+    const formattedDate = format(parseISO(date), "d 'de' MMMM 'de' yyyy", { locale: pt });
+    return formattedDate;
+  }
+
+  async function handleDelete(id) {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Tem certeza de que deseja remover?')) {
+      const response = await api.delete(`enrollments/${id}`);
+
+      if (response.status === 200 || response.status === 204) {
+        toast.success('Removido com sucesso');
+      } else {
+        toast.error('Ocorreu um erro');
+      }
+      loadEnrollments();
+    }
+  }
+
   return (
     <Container>
       <SectionHeader>
@@ -27,32 +62,21 @@ function Enrollments() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Lennert Nijenbijvank</td>
-              <td>Start</td>
-              <td>30 de Abril de 2019</td>
-              <td>30 de Maio de 2019</td>
-              <td> </td>
-              <td>
-                <Controls>
-                  <a href={() => { }}>editar</a>
-                  <a href={() => { }}>apagar</a>
-                </Controls>
-              </td>
-            </tr>
-            <tr>
-              <td>Sebastian Westergren</td>
-              <td>Diamond</td>
-              <td>14 de Outubro de 2019</td>
-              <td>14 de Abril de 2020</td>
-              <td> </td>
-              <td>
-                <Controls>
-                  <a href={() => { }}>editar</a>
-                  <a href={() => { }}>apagar</a>
-                </Controls>
-              </td>
-            </tr>
+            {enrollments.map((enrollment) => (
+              <tr key={enrollment.id}>
+                <td>{enrollment.student.name}</td>
+                <td>{enrollment.plan.title}</td>
+                <td>{formatDate(enrollment.start_date)}</td>
+                <td>{formatDate(enrollment.end_date)}</td>
+                <td>{enrollment.active ? 'Sim' : 'Não'}</td>
+                <td>
+                  <Controls>
+                    <Link to={`/enrollments/${enrollment.id}/edit`}>editar</Link>
+                    <button type="button" className="delete" onClick={() => handleDelete(enrollment.id)}>apagar</button>
+                  </Controls>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Content>

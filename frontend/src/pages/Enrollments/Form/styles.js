@@ -34,7 +34,31 @@ export const FormDiv = styled.div`
     display: flex;
     flex-direction: column;
 
-    input {     
+    .async-select {
+      height: 45px;
+      width: 98%;
+      margin: 10px 10px;
+      > .react-select__control, .react-select__value-container, .react-select__indicators {
+        height: 45px;
+      }
+    }
+
+    .react-select {
+      height: 45px;
+      width: 200px;
+      margin: 10px 10px;
+    }
+
+    .react-select__control {
+      width: 100%;
+    }
+
+    .react-select__control, .react-select__value-container, .react-select__indicators {
+      height: 45px;
+    }
+    
+
+    label + input {
       margin: 10px 10px;
       height: 45px;
       background: #fff;
@@ -52,14 +76,14 @@ export const FormDiv = styled.div`
       line-height: 16px;
     }
 
-    div {
+    div.input-group {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding: 0;
       
-      div {
+      div.input-item {
         display: flex;
         flex-direction: column;
         align-items: flex-start;

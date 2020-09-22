@@ -45,6 +45,31 @@ class EnrollmentController {
     return res.json(enrollments);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+
+    const enrollment = await Enrollment.findOne({
+      where: { id },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title', 'duration', 'price'],
+        },
+      ],
+    });
+    if (!enrollment) {
+      return res.status(400).json({ error: 'Invalid enrollment id.' });
+    }
+
+    return res.json(enrollment);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       student_id: Yup.number().required(),
@@ -196,9 +221,9 @@ class EnrollmentController {
       const student =
         student_id.toString() !== enrollment.student.id
           ? await Student.findOne({
-              where: { id: student_id },
-              attributes: ['id', 'name', 'email'],
-            })
+            where: { id: student_id },
+            attributes: ['id', 'name', 'email'],
+          })
           : enrollment.student;
       const mailData = {
         plan: { title: plan_title, duration, price: planPrice },

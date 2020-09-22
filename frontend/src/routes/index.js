@@ -18,7 +18,7 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={SignIn} />
-        <Route path="/dashboard" component={Dashboard} isPrivate />
+        <Route path="/dashboard" exact component={Dashboard} isPrivate />
 
         <Route path="/students" exact component={StudentsList} isPrivate />
         <Route path="/students/new" exact component={StudentsForm} isPrivate />
@@ -29,7 +29,8 @@ function Routes() {
         <Route path="/plans/:id/edit" exact component={PlansForm} isPrivate />
 
         <Route path="/enrollments" exact component={EnrollmentsList} isPrivate />
-        <Route path="/enrollments/new" component={EnrollmentsForm} isPrivate />
+        <Route path="/enrollments/new" exact component={EnrollmentsForm} isPrivate />
+        <Route path="/enrollments/:id/edit" exact component={EnrollmentsForm} isPrivate />
 
         <Route path="/help_orders" exact component={HelpOrders} isPrivate />
 
