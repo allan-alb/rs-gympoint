@@ -9,6 +9,21 @@ import HelpOrderAnsweredMail from '../jobs/HelpOrderAnsweredMail';
 
 class HelpOrderController {
   async index(req, res) {
+    const helpOrders = await HelpOrder.findAll({
+      where: { answer: null },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+      ],
+    });
+
+    return res.json(helpOrders);
+  }
+
+  async show(req, res) {
     const { student_id } = req.params;
 
     const helpOrders = await HelpOrder.findAll({

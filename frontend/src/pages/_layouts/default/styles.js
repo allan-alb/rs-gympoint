@@ -121,6 +121,16 @@ export const Controls = styled.div`
     }
   }
 
+  button.primary {
+    font-size: 14px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #4d85ee;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+  }
+
   button.delete {
     font-size: 14px;
     margin: 0 5px;
