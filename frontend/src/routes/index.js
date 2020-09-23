@@ -4,7 +4,6 @@ import { Switch, BrowserRouter } from 'react-router-dom';
 import Route from './Route';
 
 import SignIn from '../pages/SignIn';
-import Dashboard from '../pages/Dashboard';
 import StudentsList from '../pages/Students/List';
 import StudentsForm from '../pages/Students/Form';
 import PlansList from '../pages/Plans/List';
@@ -18,7 +17,6 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={SignIn} />
-        <Route path="/dashboard" exact component={Dashboard} isPrivate />
 
         <Route path="/students" exact component={StudentsList} isPrivate />
         <Route path="/students/new" exact component={StudentsForm} isPrivate />
