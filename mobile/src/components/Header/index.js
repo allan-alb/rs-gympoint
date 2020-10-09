@@ -22,7 +22,6 @@ import halterRight from '~/assets/halterright.png';
 export default function Header({ backTo }) {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  console.tron.log(navigation);
 
   return (
     <Container>
