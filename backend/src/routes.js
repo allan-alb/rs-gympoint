@@ -17,11 +17,13 @@ routes.get('/students/:id/checkins', CheckinController.index);
 routes.post('/students/:id/checkins', CheckinController.store);
 
 routes.post('/students/:student_id/help-orders', HelpOrderController.store);
+routes.get('/students/:student_id/help-orders', HelpOrderController.show);
+
+routes.get('/students/:id/check', StudentController.check);
 
 routes.use(authMiddleware); // requisições com autenticação necessária
 
 routes.get('/help-orders', HelpOrderController.index);
-routes.get('/students/:student_id/help-orders', HelpOrderController.show);
 routes.post('/help-orders/:id/answer', HelpOrderController.answer);
 
 routes.get('/students', StudentController.index);

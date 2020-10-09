@@ -18,6 +18,9 @@ class HelpOrderController {
           attributes: ['id', 'name', 'email'],
         },
       ],
+      order: [
+        ['id', 'DESC'],
+      ],
     });
 
     return res.json(helpOrders);
@@ -34,6 +37,9 @@ class HelpOrderController {
           as: 'student',
           attributes: ['id', 'name', 'email'],
         },
+      ],
+      order: [
+        ['id', 'DESC'],
       ],
     });
 

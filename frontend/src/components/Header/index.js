@@ -23,7 +23,7 @@ function Header() {
         <div>
           <Logo>
             <img src={halterLeft} alt="GymPoint" />
-            <img src={halterRight} alt="GymPoint" />
+            <img src={halterRight} alt="GymPoint" style={{ marginLeft: -14 }} />
             <h3>GYMPOINT</h3>
           </Logo>
           <nav>
