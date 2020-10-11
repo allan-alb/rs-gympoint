@@ -1,10 +1,10 @@
 export default {
-  host: 'smtp.mailtrap.io',
+  host: process.env.MAIL_HOST,
   port: '2525',
   secure: false,
   auth: {
-    user: 'aff716127ed448',
-    pass: '485e0a10772101',
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
   },
   default: {
     from: 'Equipe GymPoint <noreply@gympoint.com>',

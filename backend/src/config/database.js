@@ -1,8 +1,8 @@
 module.exports = {
   dialect: 'postgres',
   host: 'localhost',
-  username: 'allan',
-  password: 'allan123',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
   database: 'gympoint',
   define: {
     timestamps: true,
